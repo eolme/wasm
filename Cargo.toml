@@ -1,0 +1,25 @@
+[package]
+name = "wasm"
+version = "0.1.0"
+authors = ["eolme <im@petrov.engineer>"]
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = { version = "0.2.83" }
+wee_alloc = { version = "0.4.5" }
+brotli = { version = "3.3.4", default-features = false, features = [] }
+
+[profile.release.package.'*']
+strip = true
+opt-level = "z"
+codegen-units = 1
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
